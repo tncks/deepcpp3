@@ -1,0 +1,17 @@
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	int iNum = 10;
+
+	//선 증감 연산자의 반환값은 l-value
+	int &rNum = ++iNum;
+
+	int &&rrNum = iNum++;
+	//후 증감 연산자의 반환값은 r-value, x-value
+
+	return 0;
+}

@@ -1,0 +1,36 @@
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+class CData
+{
+private:
+	char CharNum;
+	int IntNum;
+	double DoubleNum;
+public:
+	CData()
+	{
+		printf("기본 생성자 호출!\n");
+	}
+
+	CData(int iNum)
+	{
+		IntNum = iNum;
+		printf("변환 생성자 호출!\n");
+	}
+
+	void TempObject(const CData &rData)
+	{
+		printf("IntNum : %d\n", rData.IntNum);
+	}
+};
+
+int main()
+{
+	CData Data;
+	Data.TempObject(5);
+	
+	return 0;
+}

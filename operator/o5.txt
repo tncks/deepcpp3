@@ -1,0 +1,36 @@
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+class CRectangle
+{
+private:
+	int &Left, &Top, &Right, &Bottom;
+public:
+	CRectangle(int &iLeft, int &iTop, int &iRight, int &iBottom)
+		: Left(iLeft), Top(iTop), Right(iRight), Bottom(iBottom)
+	{
+
+	}
+
+	void PrintPos()
+	{
+		printf("왼쪽 위 : (%3d, %3d)\n", Left, Top);
+		printf("오른쪽 아래 : (%3d, %3d)\n", Right, Bottom);
+	}
+};
+
+int main()
+{
+	int iLeft = 100;
+	int iTop = 150;
+	int iRight = 250;
+	int iBottom = 30;
+
+	CRectangle Rectangle1(iLeft, iTop, iRight, iBottom);
+	Rectangle1.PrintPos();
+
+
+	return 0;
+}

@@ -1,0 +1,15 @@
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	int iNum1 = 10; 
+	int iNum2 = 20;
+	int iNum3 = 30;
+
+	int iNum4 = iNum1 + iNum2 + iNum3;
+
+	return 0;
+}

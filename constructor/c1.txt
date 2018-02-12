@@ -1,0 +1,41 @@
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+#define SAFEDELETE(PTR) delete PTR; PTR = nullptr
+#define SAFEDELETEARRAY(PTR) delete[] PTR; PTR = nullptr
+
+class CData
+{
+private:
+	int *IntNumList;
+public:
+	CData(const CData &pData)
+	{
+		cout << "copy called" << endl;
+		IntNumList = new int[5];
+	}
+
+	CData(void)
+	{
+		cout << "basic called" << endl;
+		IntNumList = new int[5];
+	}
+
+	~CData()
+	{
+		cout << "delete called" << endl;
+		SAFEDELETEARRAY(IntNumList);
+	}
+};
+
+int main()
+{
+	CData Data1;
+	CData Data2 = Data1;
+
+	cout << "end program" << endl;
+
+	return 0;
+}

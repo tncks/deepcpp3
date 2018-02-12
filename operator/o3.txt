@@ -1,0 +1,58 @@
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+#define SAFEDELETE(PTR) delete PTR; PTR = nullptr
+#define SAFEDELETEARRAY(PTR) delete[] PTR; PTR = nullptr
+
+class CData
+{
+private:
+	int *NumList;
+	int Size;
+public:
+	explicit CData(int iSize)
+	{
+		Size = iSize;
+		NumList = new int[Size];
+		printf("변환 생성자 호출!\n");
+	}
+	
+	CData(const CData& rData)
+	{
+		NumList = new int[rData.Size];
+		printf("복사 생성자 호출!\n");
+	}
+
+	CData(CData&& rData)
+	{
+		NumList = rData.NumList;
+		rData.NumList = nullptr;
+		printf("이동 생성자 호출!\n");
+	}
+
+	~CData() {
+		SAFEDELETEARRAY(NumList);
+		printf("소멸자 호출!\n");
+	}
+};
+
+CData CreateData(int iSize)
+{
+	CData NewData(iSize);
+
+	if (iSize > 10)
+	{
+		return NewData;
+	}
+
+	return NewData;
+}
+
+int main()
+{
+	CreateData(100);
+
+	return 0;
+}

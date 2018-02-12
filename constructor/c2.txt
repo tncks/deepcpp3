@@ -1,0 +1,71 @@
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+#define SAFEDELETE(PTR) delete PTR; PTR = nullptr
+#define SAFEDELETEARRAY(PTR) delete[] PTR; PTR = nullptr
+
+class CMonster
+{
+private:
+	char *Name;
+	int Level;
+	int HP, HPMAX;
+public:
+	CMonster() {}
+	CMonster(const char *szName, int iLevel, int iHPMAX)
+	{
+		Name = new char[strlen(szName) + 1];
+		strcpy(Name, szName);
+		Level = iLevel;
+		HP = HPMAX = iHPMAX;
+	}
+
+	CMonster(const CMonster &rStudent)
+	{
+		Name = new char[strlen(rStudent.Name) + 1];
+		strcpy(Name, rStudent.Name);
+		Level = rStudent.Level;
+		HP = HPMAX = rStudent.HPMAX;
+	}
+
+	~CMonster()
+	{
+		SAFEDELETEARRAY(Name);
+	}
+
+	void SetInfo(const char *szName, int iLevel, int iHPMAX)
+	{
+		Name = new char[strlen(szName) + 1];
+		strcpy(Name, szName);
+		Level = iLevel;
+		HP = HPMAX = iHPMAX;
+	}
+
+	void PrintInfo()
+	{
+		printf("몬스터 이름 : %s\n", Name);
+		printf("몬스터 레벨 : %d\n", Level);
+		printf("몬스터 체력 : %d/%d\n", HP, HPMAX);
+	}
+};
+
+typedef CMonster *PCMonster;
+
+int main()
+{
+	PCMonster MonsterList = new CMonster[3]{ CMonster("날개 기사", 12, 500) };
+
+	MonsterList[1].SetInfo("로스릭 기사", 9, 402);
+
+	MonsterList[2] = MonsterList[0];
+
+	for (int i = 0; i < 3; ++i)
+	{
+		MonsterList[i].PrintInfo();
+		printf("-------------------------------\n");
+	}
+
+	return 0;
+}

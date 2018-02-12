@@ -1,0 +1,64 @@
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+class CPosition
+{
+private:
+	int X, Y;
+public:
+	CPosition(int iX, int iY)
+	{
+		X = iX;
+		Y = iY;
+	}
+
+	int GetPosX()
+	{
+		return X;
+	}
+
+	int GetPosY()
+	{
+		return Y;
+	}
+
+	void PrintPos()
+	{
+		printf("ÁÂÇ¥ : (%3d, %3d)\n", X, Y);
+	}
+};
+
+class CRectangle
+{
+private:
+	CPosition LeftTop;
+	CPosition RightBottom;
+public:
+	CRectangle(int iLeft, int iTop, int iRight, int iBottom)
+		: LeftTop(iLeft, iTop), RightBottom(iRight, iBottom)
+	{
+
+	}
+
+	void PrintPos()
+	{
+		printf("¿ÞÂÊ À§ : (%3d, %3d)\n", LeftTop.GetPosX(), LeftTop.GetPosY());
+		printf("¿À¸¥ÂÊ ¾Æ·¡ : (%3d, %3d)\n", RightBottom.GetPosX(), RightBottom.GetPosY());
+	}
+};
+
+int main()
+{
+	const int iLeft = 100;
+	const int iTop = 150;
+	const int iRight = 250;
+	const int iBottom = 30;
+
+	CRectangle Rectangle1(iLeft, iTop, iRight, iBottom);
+	Rectangle1.PrintPos();
+
+
+	return 0;
+}

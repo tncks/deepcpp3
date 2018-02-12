@@ -1,0 +1,40 @@
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+int &PreFixPlus(int &iOperand)
+{
+	return iOperand += 1;
+}
+
+int PostFixPlus(int &iOperand)
+{
+	int iTemp = iOperand;
+	iOperand += 1;
+	return iTemp;
+}
+
+int main()
+{
+	int iNum = 10;
+	
+	int &rNum = PreFixPlus(iNum);
+	printf("선 증가 연산 결과 -> iNum : %d | rNum : %d\n\n", iNum, rNum);
+
+	int &&rrNum = PostFixPlus(iNum);
+	printf("후 증가 연산 결과 -> iNum : %d | rrNum : %d\n\n", iNum, rrNum);
+
+	cout << endl << endl;
+
+
+	iNum = 10;
+	int iResult1 = iNum++ + 10 + ++iNum;
+	printf("iResult1 : %d\n", iResult1);
+
+	iNum = 10;
+	int iResult2 = PostFixPlus(iNum) + 10 + PreFixPlus(iNum);
+	printf("iResult2 : %d\n", iResult2);
+
+	return 0;
+}

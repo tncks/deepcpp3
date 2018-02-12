@@ -1,0 +1,18 @@
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	int &&rrNum = 10;
+	printf("rrNum : %d\n", rrNum);
+
+	rrNum = 200;
+	printf("rrNum : %d\n", rrNum);
+
+	const int &&rrr = 30;
+	printf("rrr : %d\n", rrr);
+
+	return 0;
+}

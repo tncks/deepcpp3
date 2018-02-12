@@ -1,0 +1,56 @@
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+class CAttackBuff
+{
+private:
+	int PlusAttack;
+
+public:
+
+	CAttackBuff(int iPlusAttack)
+	{
+		PlusAttack = iPlusAttack;
+	}
+
+	int GetPlusAttack()
+	{
+		return PlusAttack;
+	}
+};
+
+class CMonster
+{
+private:
+	int Attack;
+
+public:
+	CMonster(int iAttack)
+	{
+		Attack = iAttack;
+	}
+
+	explicit CMonster(CAttackBuff &rAttackBuff)
+	{
+		Attack = rAttackBuff.GetPlusAttack();
+	}
+
+	void PrintfInfo()
+	{
+		printf("몬스터의 공격력 : %d\n", Attack);
+	}
+
+};
+
+int main()
+{
+	CMonster Monster1(100);
+	Monster1.PrintfInfo();
+
+	CMonster Monster2(CAttackBuff(500));
+	Monster2.PrintfInfo();
+
+	return 0;
+}
